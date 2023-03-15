@@ -19,9 +19,9 @@ export const InputPostcode = ({ setPostcode }) => {
 
     regex1.test(e) || spaceInput ? null : setUserInput(e);
 
-    // Text field locked when white space is entered, as only outcode is needed
+    // Text field locked when white space is entered, unless first input is space, as only outcode is needed
 
-    regex2.test(e) ? spaceInput = true : null;
+    regex2.test(e) && e.length !== 1 ? spaceInput = true : null;
   }
 
   function handleSubmit(e) {

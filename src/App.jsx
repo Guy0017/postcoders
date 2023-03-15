@@ -15,6 +15,8 @@ function App() {
     setError(false);
 
     if (!postcode || cache[postcode]) {
+      cache[postcode] ? setAreas(cache[postcode]) : null
+      
       return;
     }
 
@@ -43,14 +45,12 @@ function App() {
     load();
   }, [postcode]);
 
-  const isDataInCacheOrAreas = cache[postcode] ? cache[postcode] : areas;
-
   return (
     <div className="App">
       <h1>Postcoders</h1>
       <h2>
         {postcode
-          ? `Areas for ${postcode}: ${isDataInCacheOrAreas.length}`
+          ? `Areas for ${postcode}: ${areas.length}`
           : "Welcome to Postcoders! Complete your details below to start!"}
       </h2>
       <InputPostcode setPostcode={setPostcode} />
@@ -58,7 +58,7 @@ function App() {
         {error ? <p>{error}</p> : null}
       </div>
       <p>{isLoading ? "Loading.... " : null}</p>
-      <CardList areas={isDataInCacheOrAreas} />
+      <CardList areas={areas} />
     </div>
   );
 }
