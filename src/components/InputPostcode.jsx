@@ -32,17 +32,17 @@ export const InputPostcode = ({ setPostcode }) => {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>Enter outcode part of the postcode: </label>
       <input
         type="text"
+        required
         value={userInput}
         placeholder='e.g. "M1" instead of "M1 7ED"'
         onChange={(e) => handleInput(e.target.value.toUpperCase())}
       />
-      <button onClick={(e) => handleSubmit(e)}>Find</button>
+      <button>Find</button>
       <br />
-      <p>{userInput}</p>
     </form>
   );
 };
